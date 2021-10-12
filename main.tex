@@ -104,6 +104,26 @@ We propose that our framework will contribute somewhat to simplifying the descri
 \section{PRELIMINARIES}
 
 enumerate things that people need to understand
+
+While it is extremely helpful to the reader to understand certain concepts in category theory and functional programming, it isn't strictly required.
+
+Ideas:
+This research doesn't focus on creating generic categories in software but rather specifying the requirements for creating Markov categories specifically.
+In the context of software, Markov categories can be thought of as collections of stochastic transition kernels going between spaces.
+When implementing a data type, one needs to consider a family of spaces to represent configurations and what stochastic transition kernels between those spaces look like.
+Categorical probability theory focuses less on what probability distributions/stochastic maps are comprised of, and more on how they behave with respect to each other.
+
+Things that people need to understand:
+The definition of a stochastic kernel
+How stochastic kernels compose, even though their underlying types don't line up
+How distributions can be represented as kernels coming out of the singleton
+	This isn't exactly necessary and may add to the boilerplate, but it allows composition to do double duty as a distribution pushforwarder as well
+The 7 basic methods required of stochastic kernels
+String diagrams
+Abstract classes, interfaces, and/or typeclasses
+Higher order functions
+infix operators in python?
+
 \subsection{Notation}
 
 whatever you need to understand a string diagram and your infix notation
@@ -111,6 +131,22 @@ whatever you need to understand a string diagram and your infix notation
 \subsection{Concepts in Category Theory}
 
 whatever they need to understand a markov category
+
+As stated above, a thorough understanding of category theory is not strictly necessary to make sense of this.
+The basic idea in categorical probability theory is that Markov categories have in some sense a minimal set of axioms necessary to specify how stochastic transition kernels and distributions behave.
+One thing to note is that a categorical framework that works with markov maps is not limited to Markov systems.
+One can build up more general systems as Markov transitions into joint history spaces.
+
+The axiomatic behavioral requirements of Markov kernels are as follows:
+Every space must have an identity markov kernel.
+Markov kernels with compatible type signatures must compose.
+A family of spaces must include the singleton.
+For every two spaces, there must be a product (joint) space.
+The act of joining spaces must be symmetric up to isomorphism.
+Kernels must be able to be conjoined independently in parallel between their respective spaces.
+There must be a unique transition going from every space to the singleton.
+There must be a unique deterministic transition that acts as a duplicator.
+Every transition into a joint space must be conditionable on a component of its codomain.
 
 \subsection{Problem Formulation}
 
