@@ -33,6 +33,8 @@
 %\usepackage{times} % assumes new font selection scheme installed
 %\usepackage{amsmath} % assumes amsmath package installed
 %\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{standalone}
+\usepackage{freetikz}
 \usepackage{biblatex}
 \addbibresource{bibliography.bib}
 
@@ -78,7 +80,7 @@ POSETS and sorting algorithms.
 
 The only unifying description that we've had so far is PDFs, which is incompatible with computation. Algorithms should not rely on a specific representation of the probability distributions in question to work; the underlying idea is unchanged. Should be able work with the parameterization of a PDF just as well as one might work with the numerical represenation of the PDF.
 
-Not only this, but we conjecture that the framework we propose is not restricted to the classic notion of measure theoretic probabilities, but also encompasses possibilities, information, and outer probability measures. 
+Not only this, but we conjecture that the framework we propose is not restricted to the classic notion of measure theoretic probabilities, but also encompasses possibilities, information, and outer probability measures \cite{delande}. 
 
 \subsection{Literature Review}
 
@@ -160,6 +162,20 @@ Introduce algorithm with pseudocode.
 Probably use actual python to go over the language features used.
 
 SHOW IMAGE OF STRING DIAGRAM ILLUSTRATING KALMAN FILTER
+
+\begin{figure}[thpb]
+    \centering
+    \framebox{\parbox{3in}{\input{propagate-string}}}
+    \label{propagate-string}
+    \caption{Propagation step of the abstract filter}
+\end{figure}
+
+\begin{figure}[thpb]
+    \centering
+    \framebox{\parbox{3in}{\input{update-string}}}
+    \label{update-string}
+    \caption{Update step of the abstract filter}
+\end{figure}
 
 then write it using infix notation
 
