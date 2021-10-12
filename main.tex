@@ -33,19 +33,21 @@
 %\usepackage{times} % assumes new font selection scheme installed
 %\usepackage{amsmath} % assumes amsmath package installed
 %\usepackage{amssymb}  % assumes amsmath package installed
+\usepackage{biblatex}
+\addbibresource{bibliography.bib}
 
 \title{\LARGE \bf
 Toward Synthetic Algorithms for Stochastic Systems
 }
 
 
-\author{Drew McNeely$^{1}$ and Efstathios Bakolas$^{1}$% <-this % stops a space
-\thanks{$^{1}$Drew McNeely is with Department of Aerospace Engineering, 
-        The University of Texas at Austin, 7500 AE Enschede, The Netherlands
-        {\tt\small drew.mcneely@utexas.edu}}%
-\thanks{$^{2}$Bernard D. Researcheris with the Department of Electrical Engineering, Wright State University,
+\author{Drew McNeely$^{1}$ and Jeffrey Cochran$^{2}$ and Efstathios Bakolas$^{1}$% <-this % stops a space
+\thanks{$^{1}$Drew McNeely and Efstathios Bakolas are with Department of Aerospace Engineering, 
+        The University of Texas at Austin, 2617 Wichita St., Austin, TX 78712
+        {\tt\small drew.mcneely@utexas.edu, bakolas@austin.utexas.edu}}%
+\thanks{$^{2}$Jeffrey Cochran is with the Oden Institute for Computational Engineering and Sciences, The University of Texas at Austin, 201 E. 24th St., Austin, TX 78712
         Dayton, OH 45435, USA
-        {\tt\small b.d.researcher@ieee.org}}%
+        {\tt\small jeffrey.david.cochran@utexas.edu}}%
 }
 
 
@@ -82,15 +84,16 @@ Not only this, but we conjecture that the framework we propose is not restricted
 
 THE OLD PAPER THAT TALKS ABOUT IMPLICIT CONVERSIONS AND GENERIC OPERATORS
 
-The foundations of this work stem from the research of FRITZ CITATIONS, who in turn builds on the work of CHO AND JACOBS and others.
+The foundations of this work stem from the research of Fritz \cite{fritz}, who in turn builds on the work of Cho and Jacobs \cite{cho} and others.
 
-HERE IS WHAT CHO AND JACOBS DID.
+Cho and Jacobs first defined Markov categories (then called CD-categories) as used to describe generic stochastic transition maps and described their manipulation in terms of string diagrams. Fritz then greatly generalized this work, introducing the name "Markov category" and giving several abstract examples of Markov categories built synthetically. 
 
-HERE IS WHAT FRITZ DID.
+Baez and Erbele \cite{baez} actually preceded these works with a description of deterministic controls in terms of string diagrams. Here they add relational structure to the monoidal categories of dynamical system configuration spaces in order to redescribe the \emph{block diagrams} used pervasively in controls in terms of a string diagram language that is more amenable to computation.
+This work gives exciting avenues for future research, and we plan to incorporate this description into stochastic systems.
 
-OLD PAPERS THAT THOUGHT CATEGORY THEORY WAS A GOOD IDEA for controls..
-
-HERE IS SOME KALMAN FILTER-RELATED PAPERS. THIS IS WHERE YOU WILL CITE SOME OF THE COOL PAPERS  LIKE RIEMANNIAN GEOMETRY STUFF.
+Other filtering papers that work without reference to category theory employ an impressive toolbox that, in hindsight, very evidently use concepts that are generalized in the categorical viewpoint of filtering.
+Menegaz et al.\ \cite{menegaz} generalize Unscented Kalman Filters to Riemannian manifolds, and they very clearly build joint probability manifold-spaces in ways that can be easily described with monoidal categories.
+We propose that our framework will contribute somewhat to simplifying the description and implementation of algorithms such as this.
 
 
 \subsection{Contribution}
@@ -274,39 +277,5 @@ The preferred spelling of the word acknowledgment in America is without an e aft
 
 References are important to the reader; therefore, each citation must be complete and correct. If at all possible, references should be commonly available publications.
 
-
-
-\begin{thebibliography}{99}
-
-\bibitem{c1} G. O. Young, Synthetic structure of industrial plastics (Book style with paper title and editor), 	in Plastics, 2nd ed. vol. 3, J. Peters, Ed.  New York: McGraw-Hill, 1964, pp. 1564.
-\bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123135.
-\bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
-\bibitem{c4} B. Smith, An approach to graphs of linear forms (Unpublished work style), unpublished.
-\bibitem{c5} E. H. Miller, A note on reflector arrays (Periodical styleAccepted for publication), IEEE Trans. Antennas Propagat., to be publised.
-\bibitem{c6} J. Wang, Fundamentals of erbium-doped fiber amplifiers arrays (Periodical styleSubmitted for publication), IEEE J. Quantum Electron., submitted for publication.
-\bibitem{c7} C. J. Kaufman, Rocky Mountain Research Lab., Boulder, CO, private communication, May 1995.
-\bibitem{c8} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, Electron spectroscopy studies on magneto-optical media and plastic substrate interfaces(Translation Journals style), IEEE Transl. J. Magn.Jpn., vol. 2, Aug. 1987, pp. 740741 [Dig. 9th Annu. Conf. Magnetics Japan, 1982, p. 301].
-\bibitem{c9} M. Young, The Techincal Writers Handbook.  Mill Valley, CA: University Science, 1989.
-\bibitem{c10} J. U. Duncombe, Infrared navigationPart I: An assessment of feasibility (Periodical style), IEEE Trans. Electron Devices, vol. ED-11, pp. 3439, Jan. 1959.
-\bibitem{c11} S. Chen, B. Mulgrew, and P. M. Grant, A clustering technique for digital communications channel equalization using radial basis function networks, IEEE Trans. Neural Networks, vol. 4, pp. 570578, July 1993.
-\bibitem{c12} R. W. Lucky, Automatic equalization for digital communication, Bell Syst. Tech. J., vol. 44, no. 4, pp. 547588, Apr. 1965.
-\bibitem{c13} S. P. Bingulac, On the compatibility of adaptive controllers (Published Conference Proceedings style), in Proc. 4th Annu. Allerton Conf. Circuits and Systems Theory, New York, 1994, pp. 816.
-\bibitem{c14} G. R. Faulhaber, Design of service systems with priority reservation, in Conf. Rec. 1995 IEEE Int. Conf. Communications, pp. 38.
-\bibitem{c15} W. D. Doyle, Magnetization reversal in films with biaxial anisotropy, in 1987 Proc. INTERMAG Conf., pp. 2.2-12.2-6.
-\bibitem{c16} G. W. Juette and L. E. Zeffanella, Radio noise currents n short sections on bundle conductors (Presented Conference Paper style), presented at the IEEE Summer power Meeting, Dallas, TX, June 2227, 1990, Paper 90 SM 690-0 PWRS.
-\bibitem{c17} J. G. Kreifeldt, An analysis of surface-detected EMG as an amplitude-modulated noise, presented at the 1989 Int. Conf. Medicine and Biological Engineering, Chicago, IL.
-\bibitem{c18} J. Williams, Narrow-band analyzer (Thesis or Dissertation style), Ph.D. dissertation, Dept. Elect. Eng., Harvard Univ., Cambridge, MA, 1993. 
-\bibitem{c19} N. Kawasaki, Parametric study of thermal and chemical nonequilibrium nozzle flow, M.S. thesis, Dept. Electron. Eng., Osaka Univ., Osaka, Japan, 1993.
-\bibitem{c20} J. P. Wilkinson, Nonlinear resonant circuit devices (Patent style), U.S. Patent 3 624 12, July 16, 1990. 
-
-
-
-
-
-
-\end{thebibliography}
-
-
-
-
+\printbibliography
 \end{document}
