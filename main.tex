@@ -1,7 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %2345678901234567890123456789012345678901234567890123456789012345678901234567890
 %        1         2         3         4         5         6         7         8
-
+% Things to do tonight:
+% Enumerate thigns that audience needs to understand in background
+% What do they need to understand to make sense of markov categories?
+% Enumerate the string diagrams that they'll need to understand to make sense of the string diagram for the KF
+% Generate those string diagrams
 \documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out if you need a4paper
 
 %\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4 paper
@@ -31,7 +35,7 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 
 \title{\LARGE \bf
-A Domain Specific Language for Filtering using Categorical Probability
+Toward Synthetic Algorithms for Stochastic Systems
 }
 
 
@@ -56,8 +60,7 @@ A Domain Specific Language for Filtering using Categorical Probability
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-
-This electronic document is a live template. The various components of your paper [title, text, heads, etc.] are already defined on the style sheet, as illustrated by the portions given in this document.
+The tracking community has been inundated with variations on the same themes. Kalman filters beget extended Kalman filters, beget unscented Kalman filters. Each variation adds complexity to the derivation of the resulting algorithm, which must change to accommodate new assumptions. This paper unifies these algorithms under a single, simple abstract implementation. The framework developed for this purpose enables the fast and intuitive extension of these algorithms to new and more complicated assumptions. We present this new framework and briefly summarize the mathematical background necessary to understand the it. We demonstrate the simplicity that this framework offers by way of a few examples, and we confirm that our new, unifying implementation does in fact reproduce the expected results. We conclude by discussing the exciting work on the horizon. 
 
 \end{abstract}
 
@@ -65,28 +68,51 @@ This electronic document is a live template. The various components of your pape
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
-This template provides authors with most of the formatting specifications needed for preparing electronic versions of their papers. All standard paper components have been specified for three reasons: (1) ease of use when formatting individual papers, (2) automatic compliance to electronic requirements that facilitate the concurrent or later production of electronic products, and (3) conformity of style throughout a conference proceedings. Margins, column widths, line spacing, and type styles are built-in; examples of the type styles are provided throughout this document and are identified in italic type, within parentheses, following the example. Some components, such as multi-leveled equations, graphics, and tables are not prescribed, although the various table text styles are provided. The formatter will need to create these components, incorporating the applicable criteria that follow.
+The tracking community has been inundated with variations on the same themes. Kalman filters beget extended Kalman filters, beget unscented Kalman filters. Each variation adds complexity to the derivation of the resulting algorithm, which must change to accommodate new assumptions. This paper unifies these algorithms under a single, simple abstract implementation. The framework developed for this purpose enables the fast and intuitive extension of these algorithms to new and more complicated assumptions. We present this new framework and briefly summarize the mathematical background necessary to understand the it. We demonstrate the simplicity that this framework offers by way of a few examples, and we confirm that our new, unifying implementation does in fact reproduce the expected results. We conclude by discussing the exciting work on the horizon.
 
-Small paragraph: what's the problem
+The notion of abstracting an algorithm is ubiquitous, and only the inability to conceive of a unifying description has prevented doing so for Kalman filters and other algorithms on stochastic systems. 
+
+POSETS and sorting algorithms.
+
+The only unifying description that we've had so far is PDFs, which is incompatible with computation. Algorithms should not rely on a specific representation of the probability distributions in question to work; the underlying idea is unchanged. Should be able work with the parameterization of a PDF just as well as one might work with the numerical represenation of the PDF.
+
+Not only this, but we conjecture that the framework we propose is not restricted to the classic notion of measure theoretic probabilities, but also encompasses possibilities, information, and outer probability measures. 
 
 \subsection{Literature Review}
 
-Bigger paragraph.
-Find some relevant literature from controls community.
+THE OLD PAPER THAT TALKS ABOUT IMPLICIT CONVERSIONS AND GENERIC OPERATORS
+
+The foundations of this work stem from the research of FRITZ CITATIONS, who in turn builds on the work of CHO AND JACOBS and others.
+
+HERE IS WHAT CHO AND JACOBS DID.
+
+HERE IS WHAT FRITZ DID.
+
+OLD PAPERS THAT THOUGHT CATEGORY THEORY WAS A GOOD IDEA for controls..
+
+HERE IS SOME KALMAN FILTER-RELATED PAPERS. THIS IS WHERE YOU WILL CITE SOME OF THE COOL PAPERS  LIKE RIEMANNIAN GEOMETRY STUFF.
+
 
 \subsection{Contribution}
+1. actual framework (software)
+2. expressing kalman filter in category theoretical terms
+3. demonstrating how this expression of the kalman filter enables intuitive extensions and implementations
 
 \section{PRELIMINARIES}
 
+enumerate things that people need to understand
 \subsection{Notation}
 
-This section will be small
+whatever you need to understand a string diagram and your infix notation
 
 \subsection{Concepts in Category Theory}
+
+whatever they need to understand a markov category
 
 \subsection{Problem Formulation}
 
 Talk about the classical Kalman filter and the patterns that arise in the algorithm.
+
 Talk about addressing this in a categorical framework.
 
 \section{PROPOSED SOLUTION}
@@ -94,13 +120,23 @@ Talk about addressing this in a categorical framework.
 Introduce algorithm with pseudocode.
 Probably use actual python to go over the language features used.
 
+SHOW IMAGE OF STRING DIAGRAM ILLUSTRATING KALMAN FILTER
+
+then write it using infix notation
+
 \section{SIMULATION RESULTS}
 
-Verification of filters
+Explain basic assumptions for the simulation. Then illustrate the results.
 
 \section{CONCLUSION}
+It works.
 
 \subsection{Future Work}
+Gaussian Mixtures
+Unscented Kalman filters/nonlinear stuff
+Kalman filters on manifolds
+Other abstract fomrulation such as stochastic control formulations.
+
 
 \section{PROCEDURE FOR PAPER SUBMISSION}
 
