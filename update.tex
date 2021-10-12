@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage{freetikz}
+\begin{document}
+\begin{tikzpicture}
+
+	\node[isosceles triangle,
+	isosceles triangle apex angle = 60,
+	draw,
+	rotate = 270] (xhat) at (0, 3) {\rotatebox{90}{$\hat{x}_{k}$}};
+
+	\node (xnew) at (0,4) {$X$};
+	\draw (xhat.lower side) to[out=90, in=-90] (xnew.south);
+
+	\node at (1,4) {$:=$};
+	
+	\node[isosceles triangle,
+	isosceles triangle apex angle = 60,
+	draw,
+	rotate = 270] (y) at (2, 3) {\rotatebox{90}{$y_k$}};
+
+	\node[draw] (cond) at (2, 4) {$p_{|y}$};
+	\node (x) at (2, 5) {$X$};
+
+	\draw (y.lower side) to[out=90, in=-90] (cond.south);
+	\draw (cond.north) to[out=90, in=-90] (x.south);
+\end{tikzpicture}
+\end{document}

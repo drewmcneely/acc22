@@ -1,0 +1,33 @@
+\documentclass{standalone}
+\usepackage{freetikz}
+\begin{document}
+\begin{tikzpicture}
+
+	\node[isosceles triangle,
+	isosceles triangle apex angle = 60,
+	draw,
+	rotate = 270] (joint) at (1, 3) {\rotatebox{90}{$p$}};
+	\node (xy) at (1,4) {$Y\otimes X$};
+
+	\draw (joint.lower side) to[out=90, in=-90] (xy.south);
+	\node (equals) at (2, 4) {$:=$};
+
+	\node[isosceles triangle,
+	isosceles triangle apex angle = 60,
+	draw,
+	rotate = 270] (xhat) at (3, 3) {\rotatebox{90}{$\hat{x}_{k-1}$}};
+
+	\node[draw] (f) at (3, 4) {$f_{k-1}$};
+	\node (copy) at (3, 4.5) {};
+	\node[draw] (h) at (2.5, 5.5) {$h_{k}$};
+	\node (y) at (2.5, 6.5) {$Y$};
+	\node (x) at (3.5, 6.5) {$X$};
+
+	\draw (xhat.lower side) to[out=90, in=-90] (f.south);
+	\draw (f.north) to[out=90, in=-90] (copy.center);
+	\draw (copy.center) to[out=180, in=-90] (h.south);
+	\draw (h.north) to[out=90, in=-90] (y.south);
+	\draw (copy.center) to[out=0, in=-90] (x.south);
+
+\end{tikzpicture}
+\end{document}
