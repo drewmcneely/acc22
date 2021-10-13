@@ -36,6 +36,9 @@
 \usepackage{standalone}
 \usepackage{freetikz}
 \usepackage{biblatex}
+\usepackage{minted}
+\usepackage{xcolor} % to access the named colour LightGray
+\definecolor{LightGray}{gray}{0.9}
 \addbibresource{bibliography.bib}
 
 \title{\LARGE \bf
@@ -159,20 +162,64 @@ Talk about addressing this in a categorical framework.
 \section{PROPOSED SOLUTION}
 
 Introduce algorithm with pseudocode.
+
+\begin{listing}
+\begin{minted}[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+]{python}
+    def update(
+        self, 
+        dynamics, 
+        instrument, 
+        measurement
+    ):
+        prior = dynamics @ self
+        updater = prior.bayes_invert(
+            instrument
+        )
+        return updater @ measurement
+\end{minted}
+\caption{Category theoretic implementation of the classical Kalman Filter using our Python framework.}
+\label{listing:1}
+\end{listing}
+
+
+\begin{listing}
+\begin{minted}[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+]{python}
+    def bayes_invert(
+        probability, 
+        conditional
+    ):
+        return (
+            conditional * probability
+        ) / conditional.target
+\end{minted}
+\caption{Category theoretic implementation of Bayesian inversion using our Python framework.}
+\label{listing:1}
+\end{listing}
+
 Probably use actual python to go over the language features used.
 
 SHOW IMAGE OF STRING DIAGRAM ILLUSTRATING KALMAN FILTER
 
 \begin{figure}[thpb]
-    \centering
-    \framebox{\parbox{3in}{\input{propagate-string}}}
+    \framebox{\parbox{3in}{\centering\input{propagate-string}}}
     \label{propagate-string}
     \caption{Propagation step of the abstract filter}
 \end{figure}
 
 \begin{figure}[thpb]
-    \centering
-    \framebox{\parbox{3in}{\input{update-string}}}
+    \framebox{\parbox{3in}{\centering\input{update-string}}}
     \label{update-string}
     \caption{Update step of the abstract filter}
 \end{figure}
