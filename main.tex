@@ -142,8 +142,16 @@ The basic idea in categorical probability theory is that Markov categories have 
 One thing to note is that a categorical framework that works with markov maps is not limited to Markov systems.
 One can build up more general systems as Markov transitions into joint history spaces.
 
-The axiomatic behavioral requirements of Markov kernels are as follows:
-Every space must have an identity markov kernel.
+In short, a category is a possibly infinite directed graph in which the edges have an algebra of paths that describe associative composition and identity.
+For details, we invite the reader to explore a wide ranging library of literature covering category theory, widely ranging in entertainment value \cite{bartosz}\cite{context}.
+While this abstract definition works, its obtuse nature can make the topic difficult to approach and render its relevance opaque.
+In most concrete applications, the langauge of categories can be successfully used to describe families of spaces with a certain structure (represented by objects, ie. the graph's nodes) and structure preserving transformations between them (represented by the edges or morphisms as they're known).
+We can make an important observation about this construction: a category is concerned less with what elements structured spaces are composed of and more with how they behave around their neighbors.
+In other words, while a particular category may be constructed by specifying its objects and morphisms explicitly, but once done, little further mention is given to the specifics of their implementation and abstract terminology is preferred.
+This is the essence of the purpose of this paper: when describing algorithms for tracking and control of stochastic systems, it becomes cumbersome to work with specific representations of probability distributions.
+A more fruitful endeavor is to distill the behavioral nature of distributions and transition kernels into their most elemental computational requirements and, once those requirements are implemented, eschew their details for a more abstract, high-level language.
+Markov categories do just this: they provide the axiomatic requirements for a generic family of stochastic kernel-like mappings between spaces.
+
 Markov kernels with compatible type signatures must compose.
 A family of spaces must include the singleton.
 For every two spaces, there must be a product (joint) space.
