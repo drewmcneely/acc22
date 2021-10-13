@@ -35,6 +35,7 @@
 %\usepackage{amssymb}  % assumes amsmath package installed
 \usepackage{standalone}
 \usepackage{freetikz}
+\usepackage{tikz-cd}
 \usepackage{biblatex}
 \usepackage{minted}
 \usepackage{xcolor} % to access the named colour LightGray
@@ -108,8 +109,6 @@ We propose that our framework will contribute somewhat to simplifying the descri
 
 \section{PRELIMINARIES}
 
-enumerate things that people need to understand
-
 While it is extremely helpful to the reader to understand certain concepts in category theory and functional programming, it isn't strictly required.
 
 Ideas:
@@ -152,17 +151,53 @@ This is the essence of the purpose of this paper: when describing algorithms for
 A more fruitful endeavor is to distill the behavioral nature of distributions and transition kernels into their most elemental computational requirements and, once those requirements are implemented, eschew their details for a more abstract, high-level language.
 Markov categories do just this: they provide the axiomatic requirements for a generic family of stochastic kernel-like mappings between spaces.
 
-Markov kernels with compatible type signatures must compose.
-A family of spaces must include the singleton.
-For every two spaces, there must be a product (joint) space.
-The act of joining spaces must be symmetric up to isomorphism.
-Kernels must be able to be conjoined independently in parallel between their respective spaces.
-There must be a unique transition going from every space to the singleton.
-There must be a unique deterministic transition that acts as a duplicator.
-Every transition into a joint space must be conditionable on a component of its codomain.
+\subsection{Markov Transition Kernels}
+
+\newcommand{\giry}{\mathcal{G}}
+Traditionally, a Markov kernel $\Phi:X\rightarrow Y$ for measurable spaces $X$ and $Y$ is defined as a map that takes in an \emph{element} of $X$ and returns a \emph{probability distribution} on $Y$.
+Formally, if $X$ and $Y$ have $\sigma$-algebras $\mathcal{A}$ and $\mathcal{B}$ respectively, then we can define the class of probability distributions on $X$ as $\giry(X) := \{\mu : \mathcal{A} \rightarrow [0,1] \}$ where $\mu$ is restricted to being a probability measure.
+This space of distributions, defined for each measurable space, itself has a measurable structure given by an evaluation map \cite{giry}.
+A Markov kernel is then defined as a map $\Phi: X \rightarrow \giry(Y)$.
+
+To form a categorical structure, these kernels themselves need to be able to compose \emph{even when their types do not line up}.
+For traditional measure theoretic kernels, this computation is performed via Kleisli composition using the natural transformations and functors that comprise the Giry monad \cite{giry}\cite{cho}\cite{fritz}.
+Because of the nature of this composition, and the fact that transition maps for certain representations consistently have bare spaces in their domain with spaces of distributions in their codomain, we identify spaces $X$ with their classes of distributions $\giry(X)$.
+This allows us to refer to a kernel as having a signature $\Phi:X\rightarrow Y$ with the implication that its underlying map has a Kleisli-like signature.
+
+One thing to note though is that Markov categories are not necessarily limited to measure theoretic transition kernels.
+The axioms that define a Markov category can easily generalize to formulations beyond probability, and may also describe maps that have cleaner, more deterministic structure -- such as regular functions between sets.
+
+% https://q.uiver.app/?q=WzAsNixbMCwxLCJYIl0sWzAsMCwiXFxtYXRoY2Fse0d9KFgpIl0sWzEsMSwiWSJdLFsyLDEsIloiXSxbMSwwLCJcXG1hdGhjYWx7R30oWSkiXSxbMiwwLCJcXG1hdGhjYWx7R30oWikiXSxbMCw0LCJcXFBoaSIsMV0sWzIsNSwiXFxHYW1tYSIsMV0sWzAsNSwiXFxQaGlcXGNpcmNcXEdhbW1hIiwxXV0=
+\begin{figure}[thpb]
+    \centering
+    \begin{tikzcd}
+	{\mathcal{G}(X)} & {\mathcal{G}(Y)} & {\mathcal{G}(Z)} \\
+	X & Y & Z
+	\arrow["\Phi"{description}, from=2-1, to=1-2]
+	\arrow["\Gamma"{description}, from=2-2, to=1-3]
+	\arrow["\Phi\circ\Gamma"{description}, from=2-1, to=1-3]
+    \end{tikzcd}
+    \caption{Traditional Markov transition kernels compose in an unintuitive manner.}
+\end{figure}
+
+\subsection{Markov Categories}
+A Markov category is a symmetric monoidal category in which every object has a comonoidal structure \cite{fritz}.
+In more familiar terms, a family of stochastic-like kernels, regardless of their actual implementation, must obey the following set of axioms:
+
+\begin{itemize}
+    \item Markov kernels with compatible type signatures must compose.
+    \item A family of spaces must include the singleton.
+    \item For every two spaces, there must be a product (joint) space.
+    \item The act of joining spaces must be symmetric up to isomorphism.
+    \item Kernels must be able to be conjoined independently in parallel between their respective spaces.
+    \item There must be a unique transition going from every space to the singleton.
+    \item There must be a unique deterministic transition that acts as a duplicator.
+    \item Every transition into a joint space must be conditionable on a component of its codomain.
+\end{itemize}
 
 \subsection{Problem Formulation}
 
+We propose to 
 Talk about the classical Kalman filter and the patterns that arise in the algorithm.
 
 Talk about addressing this in a categorical framework.
