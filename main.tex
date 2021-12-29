@@ -82,7 +82,7 @@ The notion of abstracting an algorithm is ubiquitous, and only the inability to 
 
 POSETS and sorting algorithms.
 
-The only unifying description that we've had so far is PDFs, which is incompatible with computation. Algorithms should not rely on a specific representation of the probability distributions in question to work; the underlying idea is unchanged. Should be able work with the parameterization of a PDF just as well as one might work with the numerical represenation of the PDF.
+The only unifying description that we've had so far is PDFs, which is incompatible with computation. Algorithms should not rely on a specific representation of the probability distributions in question to work; the underlying idea is unchanged. One should be able work with the parameterization of a PDF just as well as one might work with the numerical represenation of the PDF.
 
 Not only this, but we conjecture that the framework we propose is not restricted to the classic notion of measure theoretic probabilities, but also encompasses possibilities, information, and outer probability measures \cite{delande}. 
 
@@ -210,6 +210,95 @@ Talk about addressing this in a categorical framework.
 
 \section{PROPOSED SOLUTION}
 
+\subsection{General Framework}
+
+In their book, Sussman and Abelson \cite{sicp} discuss at length techniques for creating powerful languages through abstraction.
+We will follow their philosophy here.
+While the devil is in the details, the overarching methodology is simple: programs should be seperated into \emph{layers} of absraction, and two layers will be tied together by a behavioral contract that each layer must follow. The lower layer should be more concrete and contain (possibly many) implementations of the contract, while the upper layer should be abstract and utilize the contract in algorithms.
+These layers should be insulated from each other and communicate \emph{only} through the contract.
+If there are multiple implementations of the contract in the concrete layer, the algorithms in the abstract layer should apply to all implementations as it simply has to communicate through the contract.
+
+\subsubsection{Abstraction Example}
+
+We take for example an extremely simple example where we want to abstract the concept of addition out of multiple types.
+Say we want to create several data types that have the property that data can be added together to create new data.
+For our contract, we shall create an Abstract Base Class called \texttt{Addable} that specifies that an addable type must have a built in method called \texttt{add\_us}.
+
+\begin{listing}
+\begin{minted}[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+]{python}
+	class Addable(ABC):
+		@abstractmethod
+		def add_us(self, other): pass
+\end{minted}
+    \caption{Contract for specifying types must add}
+\label{listing:1}
+\end{listing}
+
+The \texttt{@abstractmethod} decorator is a special decorator that forces any inheriting class to implement that method.
+Thus, if a new datatype wants to inherit the \texttt{Addable} class, then the program will throw an error unless we specify an \texttt{add\_us()} method for that datatype.
+
+Let's create a couple types: one will be our very own class for 2D vectors:
+
+create vector code here
+
+We implemented the \texttt{add\_us()} method to behave how one should expect (although there is unfortunately no way to force behavior to act as expect. We can only specify that the method must exist).
+Now let's make a wrapper class for lists, where we simply want to express that lists can be added together through concatenation (pretending that this functionality doesn't already exist in python by default):
+
+create concatenation code here
+
+As of now we cannot do much, but we can use the method \texttt{add\_us} on two different types of data, and the method will do different things depending on what kind of data is passed.
+
+show example of vectors and lists being added
+
+While this is simple in concept, the power here lies on the fact that \emph{an abstract method in the contract that's called by a program will change its behavior based on its context.}
+Here, we can start writing abstract programs that only make reference to the contract!
+The first thing we'll do is exploit a language feature from Python: there exist certain special "underscore" methods that, when implemented, will allow you to start using infix operators.
+In our case, implementing the \texttt{\_\_add\_\_()} method will give you usage of the \texttt{+} symbol.
+So we will just write a simple wrapper that equivocates \texttt{\_\_add\_\_()} with \texttt{add\_us()}:
+
+show wrapper function
+
+We immediately get to start using + for both our types.
+
+show usage
+
+Next, we can write a simple generic function that only references the abstract method: a method called \texttt{double\_me()} which takes its input and doubles it under its own addition rules:
+
+make double\_me
+
+As we can see, we make no reference to vectors or lists in this code.
+It is simply a 
+
+\begin{listing}
+\begin{minted}[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+]{python}
+    def update(
+        self, 
+        dynamics, 
+        instrument, 
+        measurement
+    ):
+        prior = dynamics @ self
+        updater = prior.bayes_invert(
+            instrument
+        )
+        return updater @ measurement
+\end{minted}
+\caption{Category theoretic implementation of the classical Kalman Filter using our Python framework.}
+\label{listing:1}
+\end{listing}
+
 Introduce algorithm with pseudocode.
 
 \begin{listing}
@@ -233,7 +322,7 @@ fontsize=\footnotesize,
 
 	@classmethod
 	@abstractmethod
-	def swapper(XY): pass
+	def swapper(X,Y): pass
 
 	@classmethod
 	@abstractmethod
@@ -474,4 +563,5 @@ Other abstract fomrulation such as stochastic control formulations.
 %References are important to the reader; therefore, each citation must be complete and correct. If at all possible, references should be commonly available publications.
 
 \printbibliography
+
 \end{document}

@@ -1,0 +1,24 @@
+girypy
+	markov.py
+	abstract-categories
+		kleisli.py
+		stoch-process.py
+		type-composition.py
+	concrete-categories #each file corresponds to a model, ie. what a markov transition kernel looks like
+		deterministic
+			finset.py
+			vect.py
+			set.py
+			manifold.py
+		non-deterministic
+			gauss.py
+			finstoch.py
+			finsupstoch.py
+			ut.py
+			riut.py
+			derived
+				vect-gm.py
+				ri-gm.py
+	abstract-algorithms
+		filter.py
+		stochastic-control.py
