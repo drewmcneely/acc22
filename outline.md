@@ -136,6 +136,15 @@ We find that Menegaz sufficiently formalizes and systematizes the wide range of 
 There is potential to go beyond vector spaces using this framework and to boost it into Riemannian manifold spaces.
 This is a topic for future development.
 
+#### What do UT Kernels look like?
+
+So far I've thought of 4 different classes of model provided by the user:
+
+* $h: X \rightarrow \Phi Y$
+* $h: X \rightarrow \Sigma Y$
+* $h: X\otimes R \rightarrow Y, r\in \Phi R $
+* $h: X\otimes R \rightarrow Y, r\in \Sigma R $
+
 ### Gaussian Mixtures
 Gaussian mixture models can potentially be composed as compositional data types from Extended Gaussian and finite stochastic constructions.
 What do I mean here?
